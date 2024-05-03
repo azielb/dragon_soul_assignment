@@ -74,7 +74,7 @@ function Hitbox:Query(amount: number?): {Instance}
     local parts = Workspace:GetPartsInPart(collsion, self.overlapParams)
     local position = character:GetPivot().Position
     local function reducer(acc: {Instance}, part: BasePart)
-        local char = part:FindFirstChildOfClass("Model") or part.Parent
+        local char = part:FindFirstAncestorOfClass("Model") or part.Parent
         local humanoid = char:FindFirstChildOfClass("Humanoid")
         if humanoid and humanoid.Health > 0 then
             local unregistered = table.find(acc, char) == nil
