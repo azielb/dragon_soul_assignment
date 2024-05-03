@@ -1,7 +1,7 @@
 --[[
     [TESTING]
     Handles Counter server logic. Was testing out some additional knockback at the end of the
-    animation but it doesn't really work to well with this animation, so I scrapped it
+    animation but it doesn't really work too well with this animation, so I scrapped it
 ]]
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")

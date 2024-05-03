@@ -21,7 +21,7 @@ function Input.IsLightMeleeInput(input: InputObject): boolean
     return LightMeleeInputs[input.KeyCode] == true or LightMeleeInputs[input.UserInputType] == true
 end
 
-function Input.IsSlotInput(input: InputObject): (boolean, number)
+function Input.IsSlotInput(input: InputObject): (boolean, string)
     local slot = SlotInputs[input.KeyCode]
     return slot ~= nil, slot
 end
