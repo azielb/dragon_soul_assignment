@@ -35,14 +35,14 @@ local MobileButtons
 local slotGraph = {}
 local troves = {}
 
-local HotbarController = Knit.CreateController { Name = "HotbarController" }
+local MoveController = Knit.CreateController { Name = "MoveController" }
 
-function HotbarController:KnitInit()
+function MoveController:KnitInit()
     HudController = Knit.GetController("HudController")
     MoveService = Knit.GetService("MoveService")
 end
 
-function HotbarController:KnitStart()
+function MoveController:KnitStart()
     Hotbar = HudController:GetHud().Hotbar
     MobileButtons = HudController:GetScreenGui("MobileButtons")
     HOTBAR_ON_POSITION = Hotbar.Position
@@ -53,7 +53,7 @@ function HotbarController:KnitStart()
     self:InitMobile()
 end
 
-function HotbarController:BuildHotbar()
+function MoveController:BuildHotbar()
     local function initSlot(move: {})
         local name = move.name
         local slot = move.slot
@@ -73,7 +73,7 @@ function HotbarController:BuildHotbar()
     Util.table.Apply(MoveUtil.GetAllMoves(), initSlot)
 end
 
-function HotbarController:ConnectMoveEvents()
+function MoveController:ConnectMoveEvents()
     local function cooldownStarted(moveName: string)
         local trove = troves[moveName] or Trove.new()
         trove:Clean()
@@ -115,7 +115,7 @@ function HotbarController:ConnectMoveEvents()
     })
 end
 
-function HotbarController:InitInput()
+function MoveController:InitInput()
     local function onInputBegan(input: InputObject, processed: boolean)
         if processed then
             return
@@ -132,7 +132,7 @@ function HotbarController:InitInput()
     UserInputService.InputBegan:Connect(onInputBegan)
 end
 
-function HotbarController:InitMobile()
+function MoveController:InitMobile()
     local buttons = MobileButtons.Holder.Buttons
     local function onM1Activated()
         MoveService.LightMelee:Fire()
@@ -141,4 +141,4 @@ function HotbarController:InitMobile()
     MobileButtons.Enabled = Util.platform() == "Mobile"
 end
 
-return HotbarController
+return MoveController
